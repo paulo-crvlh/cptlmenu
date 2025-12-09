@@ -9,3 +9,10 @@ clock in 15:30
     end pause 16:37
 clock out 18:34
 log: bigger logo for smaller screens, updated prices, added page titles, finished breakfast and patisserie section, started with adding lunch dishes
+
+9/12
+clock in 20:10
+    start pause 23:19
+    end pause 23:50
+clock out
+log: set up git and github environment, hosting and fix display bug on mobile devices. continue adding content. finished all the main parts (breakfast, lunch, sharing)
