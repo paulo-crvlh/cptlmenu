@@ -200,7 +200,7 @@ body.dark-mode .header-img {
 }
 
 /* Mobile optimization: stack image above text */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .content {
     flex-direction: column;
     align-items: center;
