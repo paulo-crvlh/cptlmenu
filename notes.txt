@@ -20,7 +20,6 @@ risotto
 kipbrochette 
 gebakken zalm 
 garnalen kroketen
-scampis in knoflook olie
 truffel kroketen
 calamaris
 planche capital
@@ -31,3 +30,8 @@ kaasplankje
 schnitzel kids
 visstiks kids
 kinder ijsje
+
+
+videeke
+salad zalm
+scampis in knoflook olie (fix allergy for bread)
