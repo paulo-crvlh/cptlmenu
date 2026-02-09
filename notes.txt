@@ -35,3 +35,34 @@ kinder ijsje
 videeke
 salad zalm
 scampis in knoflook olie (fix allergy for bread)
+
+
+
+code for standard page:
+
+<section class="content">
+  <img src="../img/" alt="" class="left-img">
+  <aside class="right-aside">
+    <h1>Dish</h1>
+    <p></p>
+    
+    <br><hr><br>
+
+    <h2>Remarks</h2>
+    <p></p>
+    
+    <br><hr><br>
+
+    <h2>Allergenics</h2><br>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+  </aside>
+</section>
+  <script src="../script.js"></script>
+
+</body>
+</html>
