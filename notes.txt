@@ -5,12 +5,13 @@ videeke
 salad zalm
 garnalen kroketen
 biefstuk
+chocomousse
 
 
 code for standard page:
 
 <section class="content">
-  <img src="../img/" alt="" class="left-img">
+  <img src="/kitchen-recipes/img/" alt="" class="left-img">
   <aside class="right-aside">
     <h1>Dish</h1>
     <p></p>
@@ -31,7 +32,7 @@ code for standard page:
     <p></p>
   </aside>
 </section>
-  <script src="../script.js"></script>
+  <script src="/script.js"></script>
 
 </body>
 </html>
