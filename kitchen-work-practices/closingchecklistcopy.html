@@ -106,7 +106,7 @@
         </div>
 
       </div>
-      <button onclick="window.print()" class="submit-btn">Save as PDF</button>
+      <button type="button" onclick="preparePrint()" class="submit-btn">Save as PDF</button>
 
 
     </form>
@@ -118,7 +118,7 @@
   <script>
 const employees = [
   "Ana", "Daniel", "Ilyes", "Jennifer", "Khaled",
-  "Lidia", "Omiros", "Paulo", "Rene", "Sâmella", "Simone"
+  "Lidia", "Omiros", "Paulo", "Rene", "Sâmella", "Tiame"
 ];
 
 document.querySelectorAll(".employee-select").forEach(select => {
@@ -138,6 +138,40 @@ document.querySelectorAll(".employee-select").forEach(select => {
     select.appendChild(option);
   });
 });
+
+function preparePrint() {
+  // Loop through all selects
+  document.querySelectorAll(".employee-select").forEach(select => {
+    const selectedText = select.options[select.selectedIndex]?.text;
+
+    if (selectedText) {
+      // Create a span to show the selected value
+      const span = document.createElement("span");
+      span.textContent = selectedText;
+      span.className = "print-value";
+
+      // Hide select and insert text
+      select.style.display = "none";
+      select.parentNode.appendChild(span);
+    }
+  });
+
+  // Handle date
+  const dateInput = document.getElementById("today-date");
+  if (dateInput.value) {
+    const span = document.createElement("span");
+    span.textContent = dateInput.value;
+    span.className = "print-value";
+
+    dateInput.style.display = "none";
+    dateInput.parentNode.appendChild(span);
+  }
+
+  // Print AFTER DOM update
+  setTimeout(() => {
+    window.print();
+  }, 300);
+}
 </script>
 
 </body>

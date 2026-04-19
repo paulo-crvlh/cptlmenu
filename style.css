@@ -376,3 +376,16 @@ body.dark-mode .task-row {
     color: #000 !important;
   }
 }
+
+.print-value {
+  display: inline-block;
+  padding: 6px 10px;
+  border-bottom: 1px solid #000;
+  min-width: 120px;
+}
+
+@media print {
+  button {
+    display: none;
+  }
+}

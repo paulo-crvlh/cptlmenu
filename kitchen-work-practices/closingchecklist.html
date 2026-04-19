@@ -18,39 +18,128 @@
 
 <main>
 
-   <div class="form-wrapper">
-        <form class="custom-form">
+  <div class="form-wrapper">
+    <form class="custom-form">
 
-         <div class="form-row">
-             <label for="today-date">Today's Date:</label>
-             <input type="date" id="today-date" name="today-date">
-         </div>
+      <!-- Date -->
+      <div class="form-row">
+        <label for="today-date">Today's Date:</label>
+        <input type="date" id="today-date" name="today-date" required>
+      </div>
 
-         <div class="form-row">
-             <h3>Clean Floors</h3>
+      <!-- TASK LIST -->
+      <div class="task-list">
 
-             <select id="dropdown" name="dropdown">
-                 <option value="" hidden> Responsable Employee:</option>
-                 <option value="">Ana</option>
-                 <option value="">Daniel</option>
-                 <option value="">Ilyes</option>
-                 <option value="">Jennifer</option>
-                 <option value="">Khaled</option>
-                 <option value="">Lidia</option>
-                 <option value="">Omiros</option>
-                 <option value="">Paulo</option>
-                 <option value="">Rene</option>
-                 <option value="">Sâmella</option>
-                 <option value="">Simone</option>
+        <div class="task-row">
+          <h3>Orders Done</h3>
+          <select class="employee-select" name="orders-done" required></select>
+        </div>
 
-                 </select>
-            </div>
+        <div class="task-row">
+          <h3>Hot-side stations clean</h3>
+          <select class="employee-select" name="hot-stations-clean" required></select>
+        </div>
 
-        </form>
-    </div>
+        <div class="task-row">
+          <h3>Hot-side fridges clean</h3>
+          <select class="employee-select" name="hot-fridges-clean" required></select>
+        </div>
+
+        <div class="task-row">
+          <h3>Hot-side refill</h3>
+          <select class="employee-select" name="hot-refill" required></select>
+        </div>
+
+        <div class="task-row">
+          <h3>Turn off equipment hot-side</h3>
+          <select class="employee-select" name="hot-turnoff" required></select>
+        </div>
+
+        <div class="task-row">
+          <h3>Hot-side all products closed & stickered</h3>
+          <select class="employee-select" name="hot-products-closed" required></select>
+        </div>
+
+        <div class="task-row">
+          <h3>Knives clean</h3>
+          <select class="employee-select" name="knives-clean" required></select>
+        </div>
+
+        <div class="task-row">
+          <h3>Pans clean</h3>
+          <select class="employee-select" name="pans-clean" required></select>
+        </div>
+
+        <div class="task-row">
+          <h3>Pass clean</h3>
+          <select class="employee-select" name="pass-clean" required></select>
+        </div>
+
+        <div class="task-row">
+          <h3>Cold-station refill</h3>
+          <select class="employee-select" name="cold-refill" required></select>
+        </div>
+
+        <div class="task-row">
+          <h3>Cold-side stations clean</h3>
+          <select class="employee-select" name="cold-stations-clean" required></select>
+        </div>
+
+        <div class="task-row">
+          <h3>Cold-side all products closed & stickered</h3>
+          <select class="employee-select" name="cold-products-closed" required></select>
+        </div>
+
+        <div class="task-row">
+          <h3>Turn off equipment cold-side + oven + extractor hood</h3>
+          <select class="employee-select" name="cold-turnoff" required></select>
+        </div>
+
+        <div class="task-row">
+          <h3>Empty Saladiere</h3>
+          <select class="employee-select" name="empty-saladiere" required></select>
+        </div>
+
+        <div class="task-row">
+          <h3>Garbage disposal</h3>
+          <select class="employee-select" name="garbage-disposal" required></select>
+        </div>
+
+      </div>
+      <button onclick="window.print()" class="submit-btn">Save as PDF</button>
+
+
+    </form>
+  </div>
 
 </main>
+
   <script src="/cptlmenu/script.js"></script>
+  <script>
+const employees = [
+  "Ana", "Daniel", "Ilyes", "Jennifer", "Khaled",
+  "Lidia", "Omiros", "Paulo", "Rene", "Sâmella", "Simone"
+];
+
+document.querySelectorAll(".employee-select").forEach(select => {
+  // Add placeholder
+  const placeholder = document.createElement("option");
+  placeholder.textContent = "Responsible Employee:";
+  placeholder.disabled = true;
+  placeholder.selected = true;
+  placeholder.hidden = true;
+  select.appendChild(placeholder);
+
+  // Add employees
+  employees.forEach(name => {
+    const option = document.createElement("option");
+    option.value = name;
+    option.textContent = name;
+    select.appendChild(option);
+  });
+});
+</script>
+
 </body>
 
 </html>
