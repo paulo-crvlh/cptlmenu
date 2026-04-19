@@ -76,33 +76,13 @@
         </div>
 
         <div class="task-row">
-          <h3>Cold-station refill</h3>
-          <select class="employee-select" name="cold-refill" required></select>
-        </div>
-
-        <div class="task-row">
-          <h3>Cold-side stations clean</h3>
-          <select class="employee-select" name="cold-stations-clean" required></select>
-        </div>
-
-        <div class="task-row">
-          <h3>Cold-side all products closed & stickered</h3>
-          <select class="employee-select" name="cold-products-closed" required></select>
-        </div>
-
-        <div class="task-row">
-          <h3>Turn off equipment cold-side + oven + extractor hood</h3>
-          <select class="employee-select" name="cold-turnoff" required></select>
-        </div>
-
-        <div class="task-row">
-          <h3>Empty Saladiere</h3>
-          <select class="employee-select" name="empty-saladiere" required></select>
-        </div>
-
-        <div class="task-row">
           <h3>Garbage disposal</h3>
           <select class="employee-select" name="garbage-disposal" required></select>
+        </div>
+
+        <div class="task-row">
+          <h3>Check MEP</h3>
+          <select class="employee-select" name="check-mep" required></select>
         </div>
 
       </div>
@@ -125,6 +105,7 @@ document.querySelectorAll(".employee-select").forEach(select => {
   // Add placeholder
   const placeholder = document.createElement("option");
   placeholder.textContent = "Responsible Employee:";
+  placeholder.value = ""; // IMPORTANT for validation
   placeholder.disabled = true;
   placeholder.selected = true;
   placeholder.hidden = true;
@@ -140,17 +121,26 @@ document.querySelectorAll(".employee-select").forEach(select => {
 });
 
 function preparePrint() {
+  const form = document.querySelector(".custom-form");
+
+  // ✅ Trigger validation
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  // Prevent duplicate spans if clicked multiple times
+  document.querySelectorAll(".print-value").forEach(el => el.remove());
+
   // Loop through all selects
   document.querySelectorAll(".employee-select").forEach(select => {
     const selectedText = select.options[select.selectedIndex]?.text;
 
     if (selectedText) {
-      // Create a span to show the selected value
       const span = document.createElement("span");
       span.textContent = selectedText;
       span.className = "print-value";
 
-      // Hide select and insert text
       select.style.display = "none";
       select.parentNode.appendChild(span);
     }
@@ -170,6 +160,19 @@ function preparePrint() {
   // Print AFTER DOM update
   setTimeout(() => {
     window.print();
+
+    // OPTIONAL: restore form after printing (so user can edit again)
+    setTimeout(() => {
+      document.querySelectorAll(".employee-select").forEach(select => {
+        select.style.display = "";
+      });
+
+      if (dateInput) {
+        dateInput.style.display = "";
+      }
+
+      document.querySelectorAll(".print-value").forEach(el => el.remove());
+    }, 500);
   }, 300);
 }
 </script>

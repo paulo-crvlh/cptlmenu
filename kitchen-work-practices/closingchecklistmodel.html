@@ -106,7 +106,7 @@
         </div>
 
       </div>
-      <button onclick="window.print()" class="submit-btn">Save as PDF</button>
+      <button type="button" onclick="preparePrint()" class="submit-btn">Save as PDF</button>
 
 
     </form>
@@ -118,13 +118,14 @@
   <script>
 const employees = [
   "Ana", "Daniel", "Ilyes", "Jennifer", "Khaled",
-  "Lidia", "Omiros", "Paulo", "Rene", "Sâmella", "Simone"
+  "Lidia", "Omiros", "Paulo", "Rene", "Sâmella", "Tiame"
 ];
 
 document.querySelectorAll(".employee-select").forEach(select => {
   // Add placeholder
   const placeholder = document.createElement("option");
   placeholder.textContent = "Responsible Employee:";
+  placeholder.value = ""; // IMPORTANT for validation
   placeholder.disabled = true;
   placeholder.selected = true;
   placeholder.hidden = true;
@@ -138,6 +139,62 @@ document.querySelectorAll(".employee-select").forEach(select => {
     select.appendChild(option);
   });
 });
+
+function preparePrint() {
+  const form = document.querySelector(".custom-form");
+
+  // ✅ Trigger validation
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  // Prevent duplicate spans if clicked multiple times
+  document.querySelectorAll(".print-value").forEach(el => el.remove());
+
+  // Loop through all selects
+  document.querySelectorAll(".employee-select").forEach(select => {
+    const selectedText = select.options[select.selectedIndex]?.text;
+
+    if (selectedText) {
+      const span = document.createElement("span");
+      span.textContent = selectedText;
+      span.className = "print-value";
+
+      select.style.display = "none";
+      select.parentNode.appendChild(span);
+    }
+  });
+
+  // Handle date
+  const dateInput = document.getElementById("today-date");
+  if (dateInput.value) {
+    const span = document.createElement("span");
+    span.textContent = dateInput.value;
+    span.className = "print-value";
+
+    dateInput.style.display = "none";
+    dateInput.parentNode.appendChild(span);
+  }
+
+  // Print AFTER DOM update
+  setTimeout(() => {
+    window.print();
+
+    // OPTIONAL: restore form after printing (so user can edit again)
+    setTimeout(() => {
+      document.querySelectorAll(".employee-select").forEach(select => {
+        select.style.display = "";
+      });
+
+      if (dateInput) {
+        dateInput.style.display = "";
+      }
+
+      document.querySelectorAll(".print-value").forEach(el => el.remove());
+    }, 500);
+  }, 300);
+}
 </script>
 
 </body>
